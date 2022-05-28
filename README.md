@@ -12,11 +12,11 @@ Ce programme peut être adapté à d'autres situations où des agents doivent ê
 # Installation
 Ouvrir un terminal
 Naviguer jusqu'au dossier du projet
-Exécuter pip install -r requirements.txt
+Exécuter `pip install -r requirements.txt`
 
 # Lancer le programme
 Naviguer dans jusqu'au dossier src.
-Puis taper <python App.py> ou <python3 App.py>
+Puis taper `python App.py` ou `python3 App.py`
 
 # Exemples d'entrées et de sorties
 Le dossier exemples donne des fichiers pour tester l'algorithme ou voir les résultats.
