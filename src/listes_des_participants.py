@@ -194,4 +194,4 @@ class Listes_des_participants(FPDF):
             dans le fichier listes_des_participants.pdf")
 
 # Pour tester ce module, décommenter la ligne suivante
-# PDF().creer_listes_de_controle('exemples/eleves_affectes.csv', 'exemples/sujets.csv')
+# Listes_des_participants().creer_listes_de_controle('./exemples/eleves_affectes.csv', './exemples/sujets.csv')

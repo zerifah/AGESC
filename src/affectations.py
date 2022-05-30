@@ -6,8 +6,6 @@ from profil import *           # Classe maison pour l'algorithme genereux
 from constantes import *       # Les constantes du programme
 from importation_csv import *  # Classe maison pour l'importation
 from exportation import *      # Classe maison pour l'importation
-# import dessiner_les_graphes as plt # Dessine petits graphes pour tests
-# import exemples_de_graphes as exemples # Exemples de graphe pour tests
 # import shelve # Sauvegarder ou charger des données pour tests
 
 
@@ -232,12 +230,13 @@ def Min_Aug(G, k, M):
         return None  # Il n'existe pas de chemin augmente
 
 
-def plus_cercle(M, P, G):
+def augmente_M_selon_P(M, P, G):
     """
     definit l'operation + avec un cercle qui consiste en,
     pour chaque lien contenu dans le chemin P,
         1- s'il n'est pas dans M, on ajoute ce lien
         2- s'il est deja dans M, on supprime ce lien
+    Le terme est 'différence symétrique'.
 
     Entrées : l'appariment M qu'on va modifier selon le chemin P et G qu'on met a jour
     Sortie : retourne M augmente avec P.
@@ -316,8 +315,7 @@ def trouve_appariement_maximum(G, type="genereux"):  # Manlove, Algorithme 8.2 p
             P = Max_Aug(G, k, M)
         print(f"Etape {k} - Chemin augmente trouvé : ", P)
         if P is not None:
-            M = plus_cercle(M, P, G)
-            # plt.dessine(G, M)
+            M = augmente_M_selon_P(M, P, G)
         else:
             duree = time() - debut
             print("Durée : ", duree)
@@ -362,7 +360,7 @@ def effectuer_affectations(G, M):
             assigne_eleve_au_sujet(G, n, sujet_attribue)
 
 
-def principal(f_eleves, f_sujets, f_eleves_sortie="eleves_affectes", f_sujets_sortie="sujets_statistiques", type="genereux"):
+def principal(f_eleves, f_sujets, f_eleves_sortie="eleves_affectes", f_sujets_sortie="sujets_statistiques", type=TYPE_APPARIEMENT):
     """
     Programme principal qui :
     - 1. importe les donnees
@@ -377,6 +375,7 @@ def principal(f_eleves, f_sujets, f_eleves_sortie="eleves_affectes", f_sujets_so
     Entrees :
         fichier_eleves = (chemin +) nom des fichiers csv contenant la liste des eleves et leur choix
         fichier_sujets = (chemin +) nom des fichiers csv contenant la liste des sujets et leur choix
+        type = type d'appariement (voir constantes.py), soit 'glouton', soit 'genereux'
 
     Sortie : deux fichiers :
         1) f_eleves_sortie, par défaut "eleves_affectations.csv" : fichier des eleves avec leur affectation
@@ -452,20 +451,5 @@ def principal(f_eleves, f_sujets, f_eleves_sortie="eleves_affectes", f_sujets_so
 
     return sortie_eleves, sortie_sujets, profil_de_M(G2, M), duree
 
-# principal("eleves-set2021.csv", "sujets-set2021.csv")
-# principal("eleves-23mai.csv", "sujets_test_16_mai.csv")
-# principal("liste_eleves3.csv", "sujets3.csv")
-# principal("eleves3.csv", "sujets3.csv")
-# principal("table_eleves.csv", "table_sujets.csv")
-
-# G = importer_donnees("eleves.csv", "sujets.csv")
-# G = importer_donnees("eleves-set2021.csv", "sujets-set2021.csv")
-# G = exemples.graphe2()
-# G = exemples.manlove_fig_1_5() avec constante NBRE_CHOIX = 5!
-# G = exemples.exemple_sature()
-# G = exemples.sng_fig_7_2()
-# G, M = exemples.graphe_capacitif()
-# print("noeuds : ", G.nodes, G.edges)
-# M = trouve_appariement_maximum(G, "3")
-
-# plt.dessine(G)
+# Pour tester uniquement ce module, décommenter la ligne suivante :
+# principal("./exemples/eleves.csv", "./exemples/sujets.csv")

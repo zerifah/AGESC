@@ -11,12 +11,19 @@ Ce programme peut être adapté à d'autres situations où des agents doivent ê
 
 # Installation
 Ouvrir un terminal
-Naviguer jusqu'au dossier du projet
+Naviguer jusqu'au dossier src du projet
 Exécuter `pip install -r requirements.txt`
 
 # Lancer le programme
 Naviguer dans jusqu'au dossier src.
 Puis taper `python App.py` ou `python3 App.py`
+
+# Paramètres
+Le fichier constantes.py contient certains paramètres qui peuvent modifier le comportement de l'algorithme d'affectation.
+* TYPE_APPARIEMENT:
+  * si TYPE_APPARIEMENT= "genereux", l'algorithme minimise les derniers choix
+  * si TYPE_APPARIEMENT = "glouton", l'algorithme maximise les premiers choix
+* NBRE_CHOIX indique le nombre de choix maximum qu'un·e élève peut faire. Par défaut, NBRE_CHOIX = 3.
 
 # Exemples d'entrées et de sorties
 Le dossier exemples donne des fichiers pour tester l'algorithme ou voir les résultats.
