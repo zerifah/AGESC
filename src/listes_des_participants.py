@@ -190,8 +190,9 @@ class Listes_des_participants(FPDF):
 
         # Exportation en PDF
         pdf.output('listes_des_participants.pdf', 'F')
-        print("Les listes d'absences ont été exportées\
-            dans le fichier listes_des_participants.pdf")
+        print(
+            "Les listes d'absences ont été exportées",
+            "dans le fichier listes_des_participants.pdf")
 
 # Pour tester ce module, décommenter la ligne suivante
 # Listes_des_participants().creer_listes_de_controle('./exemples/eleves_affectes.csv', './exemples/sujets.csv')
