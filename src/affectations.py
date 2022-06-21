@@ -451,5 +451,7 @@ def principal(f_eleves, f_sujets, f_eleves_sortie="eleves_affectes", f_sujets_so
 
     return sortie_eleves, sortie_sujets, profil_de_M(G2, M), duree
 
-# Pour tester uniquement ce module, décommenter la ligne suivante :
-# principal("./exemples/eleves.csv", "./exemples/sujets.csv")
+# Pour tester uniquement ce module :
+if __name__ == '__main__':
+    principal("./exemples/eleves.csv", "./exemples/sujets.csv")
+

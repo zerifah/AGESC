@@ -194,5 +194,10 @@ class Listes_des_participants(FPDF):
             "Les listes d'absences ont été exportées",
             "dans le fichier listes_des_participants.pdf")
 
-# Pour tester ce module, décommenter la ligne suivante
-# Listes_des_participants().creer_listes_de_controle('./exemples/eleves_affectes.csv', './exemples/sujets.csv')
+# Pour tester uniquement ce module, entrez un chemin valide
+# vers des fichiers sources adéquats
+if __name__ == '__main__':
+    Listes_des_participants.creer_listes_de_controle(
+            './exemples/eleves_affectes.csv',
+            './exemples/sujets.csv'
+    )
