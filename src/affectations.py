@@ -454,4 +454,3 @@ def principal(f_eleves, f_sujets, f_eleves_sortie="eleves_affectes", f_sujets_so
 # Pour tester uniquement ce module :
 if __name__ == '__main__':
     principal("./exemples/eleves.csv", "./exemples/sujets.csv")
-
