@@ -156,9 +156,11 @@ class Listes_des_participants(FPDF):
                 'participants': []}
 
         for ligne in lecture_eleves.itertuples():
+            prenom = ligne.prenom.replace('ž', "z")
+            nom = ligne.nom.replace('ž', "z")
             eleve = {
                 'eleve': int(ligne.eleve),
-                'nom': ligne.nom + " " + ligne.prenom,
+                'nom': nom + " " + prenom,
                 'classe': ligne.classe}
             sujet_attribue = int(ligne.attribue)
             sujets[sujet_attribue]['participants'].append(eleve)
@@ -198,6 +200,6 @@ class Listes_des_participants(FPDF):
 # vers des fichiers sources adéquats
 if __name__ == '__main__':
     Listes_des_participants.creer_listes_de_controle(
-            './exemples/eleves_affectes.csv',
-            './exemples/sujets.csv'
+            '../exemples/eleves_affectes_2022.csv',
+            '../exemples/sujets_2022.csv'
     )

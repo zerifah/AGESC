@@ -6,7 +6,7 @@ from constantes import SUJET_NON_INSCRIT
 from listes_des_participants import Listes_des_participants
 
 
-class Zone_Parcourir:
+class Zone_Parcourir:   
     """
     Classe pour définir un bouton 'Parcourir'
     avec une zone de texte pour afficher le chemin

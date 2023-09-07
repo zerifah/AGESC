@@ -6,8 +6,8 @@ from pandas import read_csv    # Pour modifier document csv
 class Exportation:
     """
         Classe contenant les méthodes pour l'exportation des données :
-        1- exportation_statistiques(f_sujets_sortie, G)
-        2- exportation_eleves(f_eleves, f_eleves_sortie, G)
+        1- creer_csv_statistiques_sujets(f_sujets_sortie, G)
+        2- ajoute_attributions_aux_fichiers_eleves(f_eleves, f_eleves_sortie, G)
     """
     @staticmethod
     def __genere_nouveau_nom_de_fichier(nom, extension=".csv"):

@@ -16,6 +16,15 @@ class Sujet_inexistant(Exception):
     def __str__(self):
         return f"Un choix de l'élève n°{self.eleve} ne correspond pas à un sujet existant : {self.choix}!"
 
+class Eleve_meme_numero_que_sujet(Exception):
+    """
+    Exception lorsqu'un·e eleve a le meme numero qu'un sujet
+    """
+    def __init__(self, numero):
+        self.numero = numero
+
+    def __str__(self):
+        return f"Un·e élève a le même numéro qu'un sujet : {self.numero}!"         
 
 class Importation_csv:
     """
@@ -53,6 +62,8 @@ class Importation_csv:
         Importe l'élève d'une ligne du CSV des élèves et l'insère dans le graphe G de networkX
         """
         num_eleve = int(ligne.eleve)
+        if num_eleve in G.nodes :
+            raise Eleve_meme_numero_que_sujet(num_eleve)
         G.add_node(num_eleve)
         G.nodes[num_eleve]['bipartite'] = TYPE_BIPARTITE_ELEVE
         G.nodes[num_eleve]['genre'] = ligne.genre

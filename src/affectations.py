@@ -408,6 +408,8 @@ def principal(f_eleves, f_sujets, f_eleves_sortie="eleves_affectes", f_sujets_so
     M, duree = trouve_appariement_maximum(G2, type)  # affecte les eleves aux sujets
 
     while(liste_sujets_en_sous_effectifs(G2, M)) is not None:
+        # Mieux à tester :
+        # while(sujets_a_suppr := liste_sujets_en_sous_effectifs(G2, M)) is not None:
         # Suppression pur et simple des sujets pas assez remplis.
         # Pas optimal s'il y en a plusieurs car
         # en reaffectant les eleves d'un sujet,
