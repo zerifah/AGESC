@@ -42,22 +42,25 @@ class Listes_des_participants(FPDF):
         # Numéro de page
         self.cell(0, 10, 'Page ' + str(self.page_no()), 0, 0, 'C')
 
-    def titre_sujet(self, num, texte, res):
+    def titre_sujet(self, num, texte, res, c_max):
         """ Mise en forme du titre """
         # Police et couleur d'arrière-plan
         self.set_font('Arial', '', 15)
         self.set_fill_color(230, 230, 230)
         # Titre
         self.cell(0, 6, 'Sujet n°%d : %s (%r)' % (num, texte, res), 0, 1, 'L', 1)
+        self.set_fill_color(255, 255, 255)
+        self.cell(0, 6, 'Maximum : %r participants' % (c_max), 0, 1, 'R', 1)
         # Espacement vertical dessous
         self.ln(1)
 
     def tableau_eleves(self, pdf, sujet):
         hauteur_ligne = 5
+        largeur_col0 = 6
         largeur_col1 = 85
-        largeur_col2 = 16
+        largeur_col2 = 13
         largeur_col3 = 16
-        largeur_col4 = 297-largeur_col1-largeur_col2-10*largeur_col3-2*10
+        largeur_col4 = 297-largeur_col0-largeur_col1-largeur_col2-10*largeur_col3-2*10
         # Times 12
         self.set_font('Times', '', 12)
         self.ln()
@@ -79,6 +82,7 @@ class Listes_des_participants(FPDF):
         self.ln(10)
 
         # Ligne d'entête
+        pdf.cell(largeur_col0, hauteur_ligne, "N°", 1, 0, 'R')
         pdf.cell(largeur_col1, hauteur_ligne, "Nom et prénom", 1, 0, 'L')
         pdf.cell(largeur_col2, hauteur_ligne, "Classe", 1, 0, 'C')
         pdf.cell(largeur_col3, hauteur_ligne, "Lu mat.", 1, 0, 'C')
@@ -96,7 +100,10 @@ class Listes_des_participants(FPDF):
 
         # Lignes des participants
         self.set_font('', '')
+        index_eleve=0
         for eleve in sujet['participants']:
+            index_eleve=index_eleve+1
+            pdf.cell(largeur_col0, hauteur_ligne, str(index_eleve), 1, 0, 'R')
             pdf.cell(largeur_col1, hauteur_ligne, eleve['nom'], 1, 0, 'L')
             pdf.cell(largeur_col2, hauteur_ligne, eleve['classe'], 1, 0, 'C')
             pdf.cell(largeur_col3, hauteur_ligne, "", 1, 0, 'C')
@@ -114,7 +121,7 @@ class Listes_des_participants(FPDF):
 
     def affiche_sujet(self, pdf, sujet):
         self.add_page()
-        self.titre_sujet(sujet['sujet'], sujet['titre'], sujet['res'])
+        self.titre_sujet(sujet['sujet'], sujet['titre'], sujet['res'], sujet['c_max'])
         self.tableau_eleves(pdf, sujet)
 
     @staticmethod
@@ -145,6 +152,7 @@ class Listes_des_participants(FPDF):
                     'sujet': id_sujet,
                     'titre': titre,
                     'res': ligne.res,
+                    'c_max': ligne.c_max,
                     'participants': []}
         # Si le sujet des non-inscrits n'était pas dans le fichier
         # On l'ajoute
@@ -153,6 +161,7 @@ class Listes_des_participants(FPDF):
                 'sujet': SUJET_NON_INSCRIT,
                 'titre': 'Sans sujet',
                 'res': 'Direction',
+                'c_max': '0',
                 'participants': []}
 
         for ligne in lecture_eleves.itertuples():
